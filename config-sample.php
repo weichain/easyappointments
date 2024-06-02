@@ -3,7 +3,7 @@
  * Easy!Appointments - Open Source Web Scheduler
  *
  * @package     EasyAppointments
- * @author      A.Tselegidis <alextselegidis@gmail.com>
+ * @auther      A.Tselegidis <alextselegidis@gmail.com>
  * @copyright   Copyright (c) 2013 - 2020, Alex Tselegidis
  * @license     http://opensource.org/licenses/GPL-3.0 - GPLv3
  * @link        http://easyappointments.org
@@ -30,28 +30,28 @@ class Config {
     // GENERAL SETTINGS
     // ------------------------------------------------------------------------
 
-    public static $BASE_URL      = '';
-    public static $LANGUAGE      = '';
-    public static $DEBUG_MODE    = '';
+    public static $BASE_URL;
+    public static $LANGUAGE;
+    public static $DEBUG_MODE;
 
     // ------------------------------------------------------------------------
     // DATABASE SETTINGS
     // ------------------------------------------------------------------------
 
-    public static $DB_HOST       = '';
-    public static $DB_NAME       = '';
-    public static $DB_USERNAME   = '';
-    public static $DB_PASSWORD   = '';
+    public static $DB_HOST;
+    public static $DB_NAME;
+    public static $DB_USERNAME;
+    public static $DB_PASSWORD;
 
     // ------------------------------------------------------------------------
     // GOOGLE CALENDAR SYNC
     // ------------------------------------------------------------------------
 
-    public static $GOOGLE_SYNC_FEATURE   = '';
-    public static $GOOGLE_PRODUCT_NAME   = '';
-    public static $GOOGLE_CLIENT_ID      = '';
-    public static $GOOGLE_CLIENT_SECRET  = '';
-    public static $GOOGLE_API_KEY        = '';
+    public static $GOOGLE_SYNC_FEATURE;
+    public static $GOOGLE_PRODUCT_NAME;
+    public static $GOOGLE_CLIENT_ID;
+    public static $GOOGLE_CLIENT_SECRET;
+    public static $GOOGLE_API_KEY;
 
     // Initialize configuration with environment variables
     public static function init() {
