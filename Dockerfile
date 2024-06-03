@@ -16,17 +16,17 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd gettext mysqli pdo_mysql
 
 # Install and enable Xdebug
-RUN pecl install xdebug \
+RUN pecl install xdebug-3.1.5 \
     && docker-php-ext-enable xdebug
 
 # Enable Apache rewrite module
 RUN a2enmod rewrite
 
 # Copy over custom php.ini configuration
-COPY ./server/php.ini /usr/local/etc/php/conf.d/99-overrides.ini
+COPY ./docker/server/php.ini /usr/local/etc/php/conf.d/99-overrides.ini
 
 # Expose port 80
 EXPOSE 8080
 
 # Copy the application code from the host to the container
-COPY ../ /var/www/html
+COPY ./ /var/www/html
