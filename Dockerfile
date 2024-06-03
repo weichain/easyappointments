@@ -26,7 +26,7 @@ RUN a2enmod rewrite
 COPY ./docker/server/php.ini /usr/local/etc/php/conf.d/99-overrides.ini
 
 # Expose port 80
-EXPOSE 8080
+EXPOSE 8000
 
 # Copy the application code from the host to the container
 COPY ./ /var/www/html
