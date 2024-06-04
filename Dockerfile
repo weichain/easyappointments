@@ -74,6 +74,11 @@ RUN echo "Listen 8000" >> /etc/apache2/ports.conf
 # Copy custom Apache configuration
 COPY ./docker/server/000-default.conf /etc/apache2/sites-available/000-default.conf
 
+# Create test PHP files for debugging
+RUN echo "<?php phpinfo(); ?>" > /var/www/html/info.php
+RUN echo "<?php trigger_error('This is a test error', E_USER_ERROR); ?>" > /var/www/html/error_test.php
+
+
 # Enable site configuration
 RUN a2ensite 000-default.conf
 
