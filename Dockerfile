@@ -44,8 +44,9 @@ RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
+        libzip-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd gettext mysqli pdo_mysql
+    && docker-php-ext-install -j$(nproc) gd gettext mysqli pdo pdo_mysql zip
 
 # Install and enable Xdebug
 RUN pecl install xdebug-3.1.5 \
@@ -61,7 +62,8 @@ COPY ./docker/server/php.ini /usr/local/etc/php/conf.d/99-overrides.ini
 COPY --from=build-stage /app/build /var/www/html
 
 # Ensure the correct permissions
-RUN chmod -R 777 /var/www/html
+RUN chmod -R 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 
 # Add Listen directive
 RUN echo "Listen 8000" >> /etc/apache2/ports.conf
