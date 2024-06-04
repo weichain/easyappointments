@@ -57,11 +57,23 @@ RUN a2enmod rewrite
 # Copy over custom php.ini configuration
 COPY ./docker/server/php.ini /usr/local/etc/php/conf.d/99-overrides.ini
 
+# Copy the built application from the first stage
 COPY --from=build-stage /app /var/www/html
 
+# Ensure the correct permissions
 RUN chmod -R 777 /var/www/html
-# Expose port 8080
+
+# Configure Apache to listen on port 8000
+RUN echo "Listen 8000" >> /etc/apache2/ports.conf
+
+# Copy custom Apache configuration
+COPY ./docker/server/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Enable site configuration
+RUN a2ensite 000-default.conf
+
+# Expose port 8000
 EXPOSE 8000
 
-# Copy the built application from the first stage
-# COPY . /var/wwww/html
+# Start Apache
+CMD ["apache2-foreground"]
