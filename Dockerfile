@@ -61,7 +61,7 @@ COPY --from=build-stage /app /var/www/html
 
 RUN chmod -R 777 /var/www/html
 # Expose port 8080
-EXPOSE 8080
+EXPOSE 8000
 
 # Copy the built application from the first stage
 # COPY . /var/wwww/html
