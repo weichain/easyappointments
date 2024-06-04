@@ -27,7 +27,7 @@ COPY ./ ./
 # Install Composer dependencies
 # RUN composer install --no-interaction --no-dev --no-scripts --optimize-autoloader
 
-# Build the application
+# Build the application (assumes the build output is in the 'build' directory)
 RUN npm run build
 
 # Second stage: Setup PHP environment and serve the application
@@ -58,12 +58,12 @@ RUN a2enmod rewrite
 COPY ./docker/server/php.ini /usr/local/etc/php/conf.d/99-overrides.ini
 
 # Copy the built application from the first stage
-COPY --from=build-stage /app /var/www/html
+COPY --from=build-stage /app/build /var/www/html
 
 # Ensure the correct permissions
 RUN chmod -R 777 /var/www/html
 
-# Configure Apache to listen on port 8000
+# Add Listen directive
 RUN echo "Listen 8000" >> /etc/apache2/ports.conf
 
 # Copy custom Apache configuration
