@@ -53,14 +53,10 @@ RUN pecl install xdebug-3.1.5 \
     && docker-php-ext-enable xdebug
 
 # Enable Apache rewrite module
-COPY ./docker/server/000-default.conf /etc/apache2/sites-available/000-default.conf
-
 RUN a2enmod rewrite
 
 # Copy over custom php.ini configuration
 COPY ./docker/server/php.ini /usr/local/etc/php/conf.d/99-overrides.ini
-
-
 
 # Copy the built application from the first stage
 COPY --from=build-stage /app/build /var/www/html
@@ -69,9 +65,14 @@ COPY --from=build-stage /app/build /var/www/html
 RUN chmod -R 755 /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 
+# Create the log file and ensure the correct permissions
+RUN touch /var/log/php_errors.log && chmod 777 /var/log/php_errors.log && chown www-data:www-data /var/log/php_errors.log
+
 # Add Listen directive
 RUN echo "Listen 8000" >> /etc/apache2/ports.conf
 
+# Copy custom Apache configuration
+COPY ./docker/server/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Enable site configuration
 RUN a2ensite 000-default.conf
