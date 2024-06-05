@@ -20,13 +20,17 @@ EXPOSE 80
 
 WORKDIR /var/www/html
 
-COPY ./docker/server/99-overrides.ini /usr/local/etc/php/conf.d
+COPY ./assets/99-overrides.ini /usr/local/etc/php/conf.d
 
-COPY ./docker/server/docker-entrypoint.sh /usr/local/bin
+# Copy the entrypoint script
+COPY ./assets/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+# Give execute permissions to the entrypoint script
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 RUN apt-get update \
     && apt-get install -y libfreetype-dev libjpeg62-turbo-dev libpng-dev unzip wget nano \
-	&& curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s \
+    && curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s \
       curl gd mbstring mysqli xdebug gettext \
     && docker-php-ext-enable xdebug \
     && wget https://github.com/alextselegidis/easyappointments/releases/download/${VERSION}/easyappointments-${VERSION}.zip \
