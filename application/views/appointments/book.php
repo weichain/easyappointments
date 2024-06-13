@@ -32,22 +32,22 @@
                 <span id="company-name"><?= $company_name ?></span>
 
                 <div id="steps">
-                    <div id="step-1" class="book-step active-step"
+                    <div id="step-1" class="book-step" style="display:none;"
                          data-tippy-content="<?= lang('service_and_provider') ?>">
                         <strong>1</strong>
                     </div>
 
-                    <div id="step-2" class="book-step" data-toggle="tooltip"
+                    <div id="step-2" class="book-step active-step" data-toggle="tooltip"
                          data-tippy-content="<?= lang('appointment_date_and_time') ?>">
-                        <strong>2</strong>
+                        <strong>1</strong>
                     </div>
                     <div id="step-3" class="book-step" data-toggle="tooltip"
                          data-tippy-content="<?= lang('customer_information') ?>">
-                        <strong>3</strong>
+                        <strong>2</strong>
                     </div>
                     <div id="step-4" class="book-step" data-toggle="tooltip"
                          data-tippy-content="<?= lang('appointment_confirmation') ?>">
-                        <strong>4</strong>
+                        <strong>3</strong>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
 
             <!-- SELECT SERVICE AND PROVIDER -->
 
-            <div id="wizard-frame-1" class="wizard-frame">
+            <div id="wizard-frame-1" class="wizard-frame" style="display:none;">
                 <div class="frame-container">
                     <h2 class="frame-title"><?= lang('service_and_provider') ?></h2>
 
@@ -194,17 +194,19 @@
                     <button type="button" id="button-next-1" class="btn button-next btn-dark"
                             data-step_index="1">
                         <?= lang('next') ?>
-                        <i class="fas fa-chevron-right ml-2"></i>
+                        <i class="fas fa-chevron-right mr-2"></i>
                     </button>
                 </div>
             </div>
 
             <!-- SELECT APPOINTMENT DATE -->
 
-            <div id="wizard-frame-2" class="wizard-frame" style="display:none;">
+            <div id="wizard-frame-2" class="wizard-frame">
                 <div class="frame-container">
-
+                    
                     <h2 class="frame-title"><?= lang('appointment_date_and_time') ?></h2>
+                    Provider: <div id="selected-prov" class="col-12 col-md-6"></div>
+                    Service: <div id="selected-serv" class="col-12 col-md-6"></div>
 
                     <div class="row frame-content">
                         <div class="col-12 col-md-6">
@@ -225,11 +227,7 @@
                 </div>
 
                 <div class="command-buttons">
-                    <button type="button" id="button-back-2" class="btn button-back btn-outline-secondary"
-                            data-step_index="2">
-                        <i class="fas fa-chevron-left mr-2"></i>
-                        <?= lang('back') ?>
-                    </button>
+                    <span>&nbsp;</span>
                     <button type="button" id="button-next-2" class="btn button-next btn-dark"
                             data-step_index="2">
                         <?= lang('next') ?>

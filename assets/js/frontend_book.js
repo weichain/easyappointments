@@ -207,6 +207,21 @@ window.FrontendBook = window.FrontendBook || {};
             FrontendBookApi.getUnavailableDates($(this).val(), $('#select-service').val(),
                 $('#select-date').datepicker('getDate').toString('yyyy-MM-dd'));
             FrontendBook.updateConfirmFrame();
+
+            $('#selected-prov').empty();
+            var name;
+            GlobalVariables.availableProviders.forEach(function (provider) {
+                if (provider.id == $('#select-provider').val()){
+                    name = provider.first_name + ' ' + provider.last_name
+                }
+            })
+            $('<div/>', {
+                'html': [
+                    $('<h4/>', {
+                        'text': name
+                    })
+                ]
+            }).appendTo('#selected-prov');
         });
 
         /**
@@ -240,6 +255,22 @@ window.FrontendBook = window.FrontendBook || {};
                 $('#select-date').datepicker('getDate').toString('yyyy-MM-dd'));
             FrontendBook.updateConfirmFrame();
             updateServiceDescription(serviceId);
+
+            $('#selected-prov').empty();
+            var name;
+            GlobalVariables.availableProviders.forEach(function (provider) {
+                if (provider.id == $('#select-provider').val()){
+                    name = provider.first_name + ' ' + provider.last_name
+                }
+            });
+
+            $('<div/>', {
+                'html': [
+                    $('<h4/>', {
+                        'text': name
+                    })
+                ]
+            }).appendTo('#selected-prov');
         });
 
         /**

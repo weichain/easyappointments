@@ -3,11 +3,11 @@
  * Easy!Appointments - Open Source Web Scheduler
  *
  * @package     EasyAppointments
- * @author      A.Tselegidis <alextselegidis@gmail.com>
- * @copyright   Copyright (c) 2013 - 2020, Alex Tselegidis
- * @license     http://opensource.org/licenses/GPL-3.0 - GPLv3
- * @link        http://easyappointments.org
- * @since       v1.0.0
+ * author      A.Tselegidis <alextselegidis@gmail.com>
+ * copyright   Copyright (c) 2013 - 2020, Alex Tselegidis
+ * license     http://opensource.org/licenses/GPL-3.0 - GPLv3
+ * link        http://easyappointments.org
+ * since       v1.0.0
  * ---------------------------------------------------------------------------- */
 
 /**
@@ -30,29 +30,46 @@ class Config {
     // GENERAL SETTINGS
     // ------------------------------------------------------------------------
 
-    const BASE_URL      = 'http://url-to-easyappointments-directory';
-    const LANGUAGE      = 'english';
-    const DEBUG_MODE    = FALSE;
+    public static $BASE_URL      = '';
+    public static $LANGUAGE      = 'english';
+    public static $DEBUG_MODE    = FALSE;
 
     // ------------------------------------------------------------------------
     // DATABASE SETTINGS
     // ------------------------------------------------------------------------
 
-    const DB_HOST       = 'localhost';
-    const DB_NAME       = 'easyappointments';
-    const DB_USERNAME   = 'root';
-    const DB_PASSWORD   = 'root';
+    public static $DB_HOST       = null;
+    public static $DB_NAME       = null;
+    public static $DB_USERNAME   = null;
+    public static $DB_PASSWORD   = null;
 
     // ------------------------------------------------------------------------
     // GOOGLE CALENDAR SYNC
     // ------------------------------------------------------------------------
 
-    const GOOGLE_SYNC_FEATURE   = FALSE; // Enter TRUE or FALSE
-    const GOOGLE_PRODUCT_NAME   = '';
-    const GOOGLE_CLIENT_ID      = '';
-    const GOOGLE_CLIENT_SECRET  = '';
-    const GOOGLE_API_KEY        = '';
+    public static $GOOGLE_SYNC_FEATURE   = FALSE;
+    public static $GOOGLE_PRODUCT_NAME   = null;
+    public static $GOOGLE_CLIENT_ID      = null;
+    public static $GOOGLE_CLIENT_SECRET  = null;
+    public static $GOOGLE_API_KEY        = null;
+
+    public static function init() {
+        self::$BASE_URL      = getenv('BASE_URL');
+        self::$LANGUAGE      = getenv('LANGUAGE');
+        self::$DEBUG_MODE      = getenv('DEBUG_MODE');
+        self::$DB_HOST       = getenv('DB_HOST');
+        self::$DB_NAME       = getenv('DB_NAME');
+        self::$DB_USERNAME   = getenv('DB_USERNAME');
+        self::$DB_PASSWORD   = getenv('DB_PASSWORD');
+        self::$GOOGLE_SYNC_FEATURE   = getenv('GOOGLE_SYNC_FEATURE') === 'true' ? TRUE : FALSE;
+        self::$GOOGLE_PRODUCT_NAME   = getenv('GOOGLE_PRODUCT_NAME');
+        self::$GOOGLE_CLIENT_ID      = getenv('GOOGLE_CLIENT_ID');
+        self::$GOOGLE_CLIENT_SECRET  = getenv('GOOGLE_CLIENT_SECRET');
+        self::$GOOGLE_API_KEY        = getenv('GOOGLE_API_KEY');
+    }
 }
+
+Config::init();
 
 /* End of file config.php */
 /* Location: ./config.php */

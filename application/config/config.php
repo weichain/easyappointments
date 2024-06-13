@@ -10,7 +10,7 @@
 */
 $config['version'] = '1.4.3'; // This must be changed manually.
 $config['release_label'] = ''; // Leave empty for no title or add Alpha, Beta etc ...
-$config['debug'] = Config::DEBUG_MODE;
+$config['debug'] = Config::$DEBUG_MODE;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ $config['debug'] = Config::DEBUG_MODE;
 | path to your installation.
 |
 */
-$config['base_url'] = Config::BASE_URL;
+$config['base_url'] = Config::$BASE_URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,7 +117,7 @@ $language_code = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? substr($_SERVER['HTTP
 
 $config['language'] = isset($_SERVER['HTTP_ACCEPT_LANGUAGE'], $languages[$language_code])
     ? $languages[$language_code]
-    : Config::LANGUAGE;
+    : Config::$LANGUAGE;
 
 /*
 |--------------------------------------------------------------------------
