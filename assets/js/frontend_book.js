@@ -256,21 +256,22 @@ window.FrontendBook = window.FrontendBook || {};
             FrontendBook.updateConfirmFrame();
             updateServiceDescription(serviceId);
 
-            $('#selected-prov').empty();
+            $('#selected-serv').empty();
             var name;
-            GlobalVariables.availableProviders.forEach(function (provider) {
-                if (provider.id == $('#select-provider').val()){
-                    name = provider.first_name + ' ' + provider.last_name
+            GlobalVariables.availableServices.forEach(function (service) {
+                if (service.id == $('#select-service').val()){
+                    name = service.name
                 }
             });
 
             $('<div/>', {
+                
                 'html': [
                     $('<h4/>', {
                         'text': name
                     })
                 ]
-            }).appendTo('#selected-prov');
+            }).appendTo('#selected-serv');
         });
 
         /**

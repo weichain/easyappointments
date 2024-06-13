@@ -37,5 +37,12 @@ sed -i "s|const GOOGLE_PRODUCT_NAME   = '';|const GOOGLE_PRODUCT_NAME   = '$GOOG
 sed -i "s|const GOOGLE_CLIENT_ID      = '';|const GOOGLE_CLIENT_ID      = '$GOOGLE_CLIENT_ID';|g" config.php
 sed -i "s|const GOOGLE_CLIENT_SECRET  = '';|const GOOGLE_CLIENT_SECRET  = '$GOOGLE_CLIENT_SECRET';|g" config.php
 sed -i "s|const GOOGLE_API_KEY        = '';|const GOOGLE_API_KEY        = '$GOOGLE_API_KEY';|g" config.php
+sed -i "s|const PROTOCOL              = '';|const PROTOCOL              = '$PROTOCOL';|g" config.php
+sed -i "s|const SMTP_AUTH             = '';|const SMTP_AUTH             = '$SMTP_AUTH';|g" config.php
+sed -i "s|const SMTP_HOST             = '';|const SMTP_HOST             = '$SMTP_HOST';|g" config.php
+sed -i "s|const SMTP_USER             = '';|const SMTP_USER             = '$SMTP_USER';|g" config.php
+sed -i "s|const SMTP_PASS             = '';|const SMTP_PASS             = '$SMTP_PASS';|g" config.php
+sed -i "s|const SMTH_CRYPTO           = '';|const SMTH_CRYPTO           = '$SMTH_CRYPTO';|g" config.php
+sed -i "s|const SMTP_PORT             = '';|const SMTP_PORT             = '$SMTP_PORT';|g" config.php
 
 apache2-foreground

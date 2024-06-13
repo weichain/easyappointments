@@ -53,6 +53,18 @@ class Config {
     public static $GOOGLE_CLIENT_SECRET  = null;
     public static $GOOGLE_API_KEY        = null;
 
+    // ------------------------------------------------------------------------
+    // SMTP
+    // ------------------------------------------------------------------------
+
+    public static $PROTOCOL    = null;
+    public static $SMTP_AUTH   = FALSE;
+    public static $SMTP_HOST   = null;
+    public static $SMTP_USER   = null;
+    public static $SMTP_PASS   = null;
+    public static $SMTH_CRYPTO = null;
+    public static $SMTP_PORT   = null;
+
     public static function init() {
         self::$BASE_URL      = getenv('BASE_URL');
         self::$LANGUAGE      = getenv('LANGUAGE');
@@ -66,6 +78,13 @@ class Config {
         self::$GOOGLE_CLIENT_ID      = getenv('GOOGLE_CLIENT_ID');
         self::$GOOGLE_CLIENT_SECRET  = getenv('GOOGLE_CLIENT_SECRET');
         self::$GOOGLE_API_KEY        = getenv('GOOGLE_API_KEY');
+        self::$PROTOCOL              = getenv('PROTOCOL');
+        self::$SMTP_AUTH   = getenv('SMTP_AUTH');
+        self::$SMTP_HOST   = getenv('SMTP_HOST');
+        self::$SMTP_USER   = getenv('SMTP_USER');
+        self::$SMTP_PASS   = getenv('SMTP_PASS');
+        self::$SMTH_CRYPTO = getenv('SMTH_CRYPTO');
+        self::$SMTP_PORT   = getenv('SMTP_PORT');
     }
 }
 
