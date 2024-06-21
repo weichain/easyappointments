@@ -13,6 +13,8 @@
 
 require_once __DIR__ . '/API_V1_Controller.php';
 
+use EA\Engine\Notifications\Email as EmailClient;
+use EA\Engine\Types\Email;
 use EA\Engine\Api\V1\Request;
 use EA\Engine\Api\V1\Response;
 use EA\Engine\Types\NonEmptyText;
@@ -37,6 +39,7 @@ class Providers extends API_V1_Controller {
     {
         parent::__construct();
         $this->load->model('providers_model');
+        $this->load->model('user_model');
         $this->parser = new \EA\Engine\Api\V1\Parsers\Providers;
     }
 
@@ -101,10 +104,28 @@ class Providers extends API_V1_Controller {
             {
                 throw new Exception('No settings property provided.');
             }
-
-            if ( ! array_key_exists('working_plan', $provider['settings']['working_plan']))
+    
+            if ( ! array_key_exists('working_plan', $provider['settings']))
             {
                 $provider['settings']['working_plan'] = $this->settings_model->get_setting('company_working_plan');
+            }
+
+            if ( ! array_key_exists('password', $provider['settings']))
+            {
+                $this->config->load('email');
+                $email = new EmailClient($this, $this->config->config);
+                $company_settings = [
+                    'company_name' => $this->settings_model->get_setting('company_name'),
+                    'company_link' => $this->settings_model->get_setting('company_link'),
+                    'company_email' => $this->settings_model->get_setting('company_email')
+                ];
+
+                $new_password = random_string('alnum', 12);
+
+                $email->send_password(new NonEmptyText($new_password), new Email($provider['email']),
+                    $company_settings);
+
+                $provider['settings']['password'] = $new_password;
             }
 
             $id = $this->providers_model->add($provider);
